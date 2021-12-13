@@ -1,0 +1,28 @@
+<%# para usar o auto completar só colocar o "phx-change" em form %>
+<form phx-change="airport_code_search">
+  <fieldset>
+    <label for="nameField">Airport Code</label>
+    <input type="text" name="airport_code" value="<%= @airport_code %>" placeholder="e.g. FRA" autofocus autocomplete="off" />
+    <input class="button-primary" type="submit" value="Search Airport">
+  </fieldset>
+</form>
+
+<%= unless @airports == [] do %>
+  <h2>Search Results</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Airport Code</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for airport <- @airports do %>
+      <tr>
+        <td><%= airport.code %></td>
+        <td><%= airport.name %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
